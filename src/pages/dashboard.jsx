@@ -23,13 +23,13 @@ function Dashboard() {
     <div className="bg-white p-8 rounded-lg shadow-md w-96">
       <h2 className="text-2xl font-bold text-center">Dashboard</h2>
       <p className="text-gray-600 text-center mt-2">
-        Bienvenido a tu gestor de tareas.
+        Welcome.
       </p>
       <button
         onClick={handleLogout}
         className="bg-red-600 text-white py-2 px-4 rounded mt-4 hover:bg-red-700"
       >
-        Cerrar Sesión
+        Log Out
       </button>
     </div>
   );

@@ -68,7 +68,7 @@ function AuthPage() {
             />
             <button
               type="button"
-              className="absolute inset-y-0 right-3 flex items-center text-gray"
+              className="absolute inset-y-0 right-3 flex items-center text-gray-100 hover:text-purple-600"
               onClick={togglePasswordVisibility}
               aria-label={showPassword ? "Hide password" : "Show password"}
             >

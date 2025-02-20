@@ -53,3 +53,22 @@ const taskSlice = createSlice({
 });
 
 export default taskSlice.reducer;
+export const updateTaskStatus = createAsyncThunk(
+  "tasks/updateTaskStatus",
+  async ({ taskId, newStatus }, { dispatch }) => {
+    try {
+      const response = await fetch(`/api/tasks/${taskId}/status`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) throw new Error("Error al actualizar la tarea");
+
+      dispatch(fetchTasks());
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+

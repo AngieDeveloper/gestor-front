@@ -1,6 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
+import axios from "axios";
 import React from "react";
 
 const Register = () => {
@@ -8,6 +9,10 @@ const Register = () => {
         email: "",
         password: "",
     });
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,17 +35,17 @@ const Register = () => {
         <div
             className="flex items-center justify-center min-h-screen w-full bg-cover bg-center"
             style={{
-                backgroundImage: "url('https://motionbgs.com/media/490/alone-hollow-knight.jpg')",
+                backgroundImage: "url('https://i.redd.it/ypi134pr4rf61.png')",
             }}
         >
             <div
                 className="bg-white/30 backdrop-blur-lg p-10 rounded-2xl shadow-xl w-[480px] relative flex flex-col items-center"
                 style={{
-                    backgroundImage: "url('https://livewallp.com/wp-content/uploads/2023/11/Hollow-Knight-thumb.png')",
+                    backgroundImage: "url('https://wallpaperaccess.com/full/5341160.jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
-                    opacity: 0.7,
+                    opacity: 0.9,
                 }}
             >
                 <h2 className="text-3xl font-bold text-center text-purple-900 mb-6">User Registration</h2>
@@ -54,21 +59,35 @@ const Register = () => {
                             value={user.email}
                             onChange={handleChange}
                             required
-                            className="mt-1 block w-full p-3 bg-transparent border-b-2 border-gray-300 text-white focus:outline-none focus:border-purple-500"
+                            className="mt-1 block w-full p-3 bg-transparent
+                            text-white
+                            focus:border-purple-500"
                         />
                     </div>
 
-                    <div className="mb-6">
+                    <div className="mb-6 relative">
                         <label htmlFor="password" className="block text-lg font-medium text-gray-100">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            value={user.password}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 block w-full p-3 bg-transparent border-b-2 border-gray-300 text-white focus:outline-none focus:border-purple-500"
-                        />
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                id="password"
+                                value={user.password}
+                                onChange={handleChange}
+                                required
+                                className="mt-1 block w-full p-3 bg-transparent  
+                                text-white
+                                focus:border-purple-500 pr-10"
+                            />
+                            <button
+                                type="button"
+                                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-100 hover:text-purple-600"
+                                onClick={togglePasswordVisibility}
+                                aria-label={showPassword ? "Hide password" : "Show password"}
+                            >
+                                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                            </button>
+                        </div>
                     </div>
 
                     <button
@@ -79,7 +98,6 @@ const Register = () => {
                     </button>
                 </form>
 
-                {/* Login section */}
                 <p className="mt-6 text-white text-lg">
                     Already have an account?{" "}
                     <Link
